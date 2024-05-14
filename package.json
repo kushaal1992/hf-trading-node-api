@@ -1,0 +1,44 @@
+{
+  "name": "hf-trading-node-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start:dev": "debug=* NODE_PATH=./src ts-node-dev --respawn ./src/index.ts -r dotenv/config dotenv_config_path=.env",
+    "start:win:dev": "cross-env NODE_PATH=./src ts-node-dev --respawn ./src/index.ts -r dotenv/config dotenv_config_path=.env",
+    "start:prod": "NODE_PATH=./dist node ./dist/index.ts",
+    "start:prod:compose": "docker-compose --file docker-compose.yaml --compatibility up --build",
+    "docker:build": "docker build -t checkbook:latest .",
+    "prepare": "husky install",
+    "lint": "eslint --max-warnings 0 . && npm run tsc",
+    "lint-fix": "eslint --fix .",
+    "lint-staged-husky": "lint-staged",
+    "tsc": "tsc --noEmit",
+    "format-lint": "prettier --config .prettierrc -l --ignore-unknown .",
+    "format-fix": "prettier --config .prettierrc --write --ignore-unknown .",
+    "clean": "tsc --build --clean"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "eslint": "^8.57.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.2.0",
+    "@types/body-parser": "^1.19.5",
+    "@types/node": "^20.12.12",
+    "body-parser": "^1.20.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "globals": "^15.2.0",
+    "helmet": "^7.1.0",
+    "rimraf": "^5.0.7",
+    "typescript-eslint": "^7.9.0"
+  }
+}
